@@ -10,94 +10,60 @@
     </p>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      
-      <!-- market cap -->
-      <div>
+      <FormField
+        v-model="form.marketCap"
+        type="number"
+        label="Market Cap"
+        placeholder="1000000000"
+        suffix="USD"
+        required
+      />
 
-        <label class="font-medium mb-2 block">
-          Market Cap (USD) *
-        </label>
+      <FormField
+        v-model="form.price"
+        type="number"
+        label="Aksiya narxi"
+        placeholder="Masalan: 189.30"
+        suffix="USD"
+        hint="Bir dona aksiyaning joriy narxi."
+        min="0"
+        step="0.01"
+        required
+      />
 
-        <input
-          type="number"
-          placeholder="1000000000"
-          class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-        >
+      <FormField
+        v-model="form.ticker"
+        label="Ticker"
+        placeholder="Masalan: AAPL"
+        required
+      />
 
-      </div>
-
-      <!-- ticker -->
-
-      <div>
-
-        <label class="font-medium mb-2 block">
-          Ticker *
-        </label>
-
-        <input
-          type="text"
-          placeholder="Masalan: AAPL"
-          class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-        >
-
-      </div>
-
-      <!-- sector -->
-
-      <div>
-
-        <label class="font-medium mb-2 block">
-          Sector *
-        </label>
-
-        <select
-          class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-        >
-
+      <FormField
+        v-model="form.sector"
+        as="select"
+        label="Sector"
+        required
+      >
           <option>Basic Materials</option>
-
           <option>Communication Services</option>
-
           <option>Consumer Cyclical</option>
-
           <option>Consumer Defensive</option>
-
           <option>Energy</option>
-
           <option>Financial</option>
-
           <option>Healthcare</option>
-
           <option>Industrials</option>
-
           <option>Real Estate</option>
-
           <option>Technology</option>
-
           <option>Utilities</option>
-
           <option>Other</option>
+      </FormField>
 
-        </select>
-
-      </div>
-
-      <!-- industry -->
-
-      <div>
-
-        <label class="font-medium mb-2 block">
-          Industry *
-        </label>
-
-        <input
-          type="text"
-          placeholder="Masalan: Semiconductors"
-          class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-        >
-
-      </div>
-
+      <FormField
+        v-model="form.industry"
+        label="Industry"
+        placeholder="Masalan: Semiconductors"
+        required
+      />
     </div>
 
     <!-- Halol -->
@@ -179,17 +145,21 @@
 </template>
 
 <script>
-export default{
+import FormField from '../common/FormField.vue'
 
-data(){
-
-return{
-
-halal:false
-
-}
-
-}
-
+export default {
+  components: { FormField },
+  data() {
+    return {
+      halal: false,
+      form: {
+        marketCap: '',
+        price: '',
+        ticker: '',
+        sector: 'Basic Materials',
+        industry: ''
+      }
+    }
+  }
 }
 </script>

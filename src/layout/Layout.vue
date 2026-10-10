@@ -18,7 +18,7 @@
 
     <!-- 🔥 3️⃣ Main Content -->
     <div class="flex-1 flex flex-col">
-      <header class="h-12 border-b bg-white flex items-center px-4 md:px-6 relative">
+      <header class="h-16 border-b bg-white flex items-center px-4 md:px-6 relative">
         <button
           class="md:hidden mr-3 text-gray-600"
           @click="mobileOpen = true"

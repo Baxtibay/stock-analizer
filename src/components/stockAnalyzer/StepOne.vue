@@ -14,88 +14,34 @@ Kompaniya haqida asosiy ma'lumotlarni kiriting.
 
 </p>
 
-<!-- Company -->
+<div class="flex flex-col gap-6 mb-8">
+  <FormField
+    v-model="form.company"
+    label="Kompaniya nomi"
+    placeholder="Masalan: Apple Inc."
+    required
+  />
 
-<div class="mb-6">
+  <FormField
+    v-model="form.why"
+    as="textarea"
+    label="Nega aynan shu kompaniya?"
+    placeholder="Tanlovingizni asoslab bering..."
+  />
 
-<label class="font-medium block mb-2">
+  <FormField
+    v-model="form.revenue"
+    as="textarea"
+    label="Kompaniya nima orqali daromad ko'radi?"
+    placeholder="Asosiy daromad manbalari..."
+  />
 
-Kompaniya nomi *
-
-</label>
-
-<input
-type="text"
-placeholder="Masalan: Apple Inc."
-class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
-/>
-
-</div>
-
-<!-- Why -->
-
-<div class="mb-6">
-
-<label class="font-medium block mb-2">
-
-Nega aynan shu kompaniya?
-
-</label>
-
-<textarea
-
-rows="5"
-
-class="w-full border rounded-lg p-4 outline-none focus:ring-2 focus:ring-blue-500"
-
-placeholder="Tanlovingizni asoslab bering..."
-
-></textarea>
-
-</div>
-
-<!-- Revenue -->
-
-<div class="mb-6">
-
-<label class="font-medium block mb-2">
-
-Kompaniya nima orqali daromad ko'radi?
-
-</label>
-
-<textarea
-
-rows="5"
-
-class="w-full border rounded-lg p-4 outline-none focus:ring-2 focus:ring-blue-500"
-
-placeholder="Asosiy daromad manbalari..."
-
-></textarea>
-
-</div>
-
-<!-- Moat -->
-
-<div class="mb-8">
-
-<label class="font-medium block mb-2">
-
-Kompaniya qanchalik himoyalangan (Business Moat)?
-
-</label>
-
-<textarea
-
-rows="5"
-
-class="w-full border rounded-lg p-4 outline-none focus:ring-2 focus:ring-blue-500"
-
-placeholder="Raqobat ustunliklari..."
-
-></textarea>
-
+  <FormField
+    v-model="form.moat"
+    as="textarea"
+    label="Kompaniya qanchalik himoyalangan (Business Moat)?"
+    placeholder="Raqobat ustunliklari..."
+  />
 </div>
 
 <div class="flex flex-col md:flex-row md:justify-end gap-3 mt-10">
@@ -129,3 +75,21 @@ Aksiyani saqlash
 </div>
 
 </template>
+
+<script>
+import FormField from '../common/FormField.vue'
+
+export default {
+  components: { FormField },
+  data() {
+    return {
+      form: {
+        company: '',
+        why: '',
+        revenue: '',
+        moat: ''
+      }
+    }
+  }
+}
+</script>

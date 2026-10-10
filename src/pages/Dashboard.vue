@@ -39,6 +39,7 @@
         :stages="stages"
         :status="statusOf(stock)"
         @delete="toDelete = $event"
+        @toggle-portfolio="togglePortfolio"
       />
 
       <p v-if="!shown.length" class="text-center text-[14px] text-[#565E6B] py-10">
@@ -56,20 +57,29 @@
       @cancel="toDelete = null"
     />
 
+    <AddToPortfolioDialog
+      :open="!!toAdd"
+      :stock="toAdd"
+      @confirm="addToPortfolio"
+      @cancel="toAdd = null"
+    />
+
   </div>
 </template>
 
 <script>
 import StockCard from '../components/home/StockCard.vue'
 import ConfirmDialog from '../components/common/ConfirmDialog.vue'
+import AddToPortfolioDialog from '../components/portfolio/AddToPortfolioDialog.vue'
 
 export default {
-  components: { StockCard, ConfirmDialog },
+  components: { StockCard, ConfirmDialog, AddToPortfolioDialog },
 
   data() {
     return {
       filter: 'all',
       toDelete: null,
+      toAdd: null,
       search: this.$route.query.q || '',
 
       // Stock analyzer sahifasidagi etaplar bilan bir xil
@@ -131,6 +141,24 @@ export default {
   },
 
   methods: {
+    togglePortfolio(stock) {
+      if (!stock.inPortfolio) {
+        // Avval nechta aksiya ekanini so'raymiz
+        this.toAdd = stock
+        return
+      }
+      // TODO: API orqali portfeldan chiqarish so'rovini yuboring
+      stock.inPortfolio = false
+      stock.shares = 0
+    },
+
+    addToPortfolio(quantity) {
+      // TODO: API orqali portfelga qo'shish so'rovini yuboring
+      this.toAdd.inPortfolio = true
+      this.toAdd.shares = quantity
+      this.toAdd = null
+    },
+
     removeStock() {
       // TODO: API orqali o'chirish so'rovini yuboring
       this.stocks = this.stocks.filter(s => s.ticker !== this.toDelete.ticker)

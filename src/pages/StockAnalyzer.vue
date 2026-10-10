@@ -7,6 +7,7 @@
     <Stepper
       :step="step"
       :steps="steps"
+      @select="step = $event"
     />
 
     <StepOne

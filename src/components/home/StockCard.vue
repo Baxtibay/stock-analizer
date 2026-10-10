@@ -9,8 +9,17 @@
           {{ stock.ticker.slice(0, 2) }}
         </div>
         <div class="flex flex-col min-w-0">
-          <h2 class="m-0 font-mono font-semibold text-[16px] tracking-[0.01em] text-[#11151B]">
+          <h2 class="m-0 flex items-center gap-2 font-mono font-semibold text-[16px] tracking-[0.01em] text-[#11151B]">
             {{ stock.ticker }}
+            <span
+              v-if="stock.inPortfolio"
+              class="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-[#EEF2FB] text-[#1E4FD8] font-sans text-[11px] font-semibold"
+              :title="`Portfelda: ${stock.shares} dona`"
+            >
+              <i class="fa-solid fa-briefcase text-[10px]" aria-hidden="true"></i>
+              {{ stock.shares }}
+              <span class="sr-only">dona portfelda</span>
+            </span>
           </h2>
           <span class="text-[13px] text-[#5D6573] truncate">{{ stock.name }} · {{ stock.sector }}</span>
         </div>
@@ -75,18 +84,19 @@ export default {
     status: { type: String, required: true }
   },
 
-  emits: ['delete'],
-
-  data() {
-    return {
-      menu: [
-        { key: 'edit', label: 'Tahrirlash', icon: 'fa-pen' },
-        { key: 'delete', label: "O'chirish", icon: 'fa-trash-can', danger: true }
-      ]
-    }
-  },
+  emits: ['delete', 'toggle-portfolio'],
 
   computed: {
+    menu() {
+      return [
+        { key: 'edit', label: 'Tahrirlash', icon: 'fa-pen' },
+        this.stock.inPortfolio
+          ? { key: 'portfolio', label: 'Sotish', icon: 'fa-hand-holding-dollar' }
+          : { key: 'portfolio', label: 'Sotib olish', icon: 'fa-cart-shopping' },
+        { key: 'delete', label: "O'chirish", icon: 'fa-trash-can', danger: true }
+      ]
+    },
+
     badge() {
       if (this.status === 'full') {
         return { label: "To'liq", class: 'bg-[#E3EAFC] text-[#163BA3]' }
@@ -112,6 +122,7 @@ export default {
   methods: {
     onMenu(key) {
       if (key === 'edit') this.$router.push('/stock-analyzer')
+      if (key === 'portfolio') this.$emit('toggle-portfolio', this.stock)
       if (key === 'delete') this.$emit('delete', this.stock)
     }
   }

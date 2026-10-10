@@ -10,61 +10,26 @@
     </p>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <FormField
+        v-model="form.pe"
+        type="number"
+        label="P/E (Price / Earnings)"
+        placeholder="Masalan: 18.5"
+      />
 
-      <!-- PE -->
+      <FormField
+        v-model="form.ps"
+        type="number"
+        label="P/S (Price / Sales)"
+        placeholder="Masalan: 3.2"
+      />
 
-      <div>
-
-        <label class="font-medium block mb-2">
-
-          P/E (Price / Earnings)
-
-        </label>
-
-        <input
-          type="number"
-          placeholder="Masalan: 18.5"
-          class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-        >
-
-      </div>
-
-      <!-- PS -->
-
-      <div>
-
-        <label class="font-medium block mb-2">
-
-          P/S (Price / Sales)
-
-        </label>
-
-        <input
-          type="number"
-          placeholder="Masalan: 3.2"
-          class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-        >
-
-      </div>
-
-      <!-- PB -->
-
-      <div>
-
-        <label class="font-medium block mb-2">
-
-          P/B (Price / Book)
-
-        </label>
-
-        <input
-          type="number"
-          placeholder="Masalan: 2.1"
-          class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-        >
-
-      </div>
-
+      <FormField
+        v-model="form.pb"
+        type="number"
+        label="P/B (Price / Book)"
+        placeholder="Masalan: 2.1"
+      />
     </div>
 
     <hr class="my-10">
@@ -112,26 +77,14 @@
 
         </div>
 
-        <div
+        <FormField
           v-if="hasDividend"
-          class="relative"
-        >
-
-          <input
-            type="number"
-            placeholder="Masalan: 2.50"
-            class="w-full border rounded-lg px-4 py-3 pr-10 outline-none focus:ring-2 focus:ring-blue-500"
-          >
-
-          <span
-            class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
-          >
-
-            %
-
-          </span>
-
-        </div>
+          v-model="form.dividend"
+          type="number"
+          label="Dividend"
+          placeholder="Masalan: 2.50"
+          suffix="%"
+        />
 
       </div>
 
@@ -176,26 +129,14 @@
 
         </div>
 
-        <div
+        <FormField
           v-if="hasPayout"
-          class="relative"
-        >
-
-          <input
-            type="number"
-            placeholder="Masalan: 45"
-            class="w-full border rounded-lg px-4 py-3 pr-10 outline-none focus:ring-2 focus:ring-blue-500"
-          >
-
-          <span
-            class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
-          >
-
-            %
-
-          </span>
-
-        </div>
+          v-model="form.payout"
+          type="number"
+          label="Payout Ratio"
+          placeholder="Masalan: 45"
+          suffix="%"
+        />
 
       </div>
 
@@ -247,19 +188,28 @@
 </template>
 
 <script>
-export default{
+import FormField from '../common/FormField.vue'
 
-  props:[
+export default {
+  components: { FormField },
+
+  props: [
     "currentStep",
     "totalSteps"
   ],
 
   data() {
     return {
-      hasDividend:false,
-      hasPayout:false
+      hasDividend: false,
+      hasPayout: false,
+      form: {
+        pe: '',
+        ps: '',
+        pb: '',
+        dividend: '',
+        payout: ''
+      }
     }
   }
-
 }
 </script>

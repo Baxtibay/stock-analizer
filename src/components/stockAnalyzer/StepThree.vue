@@ -12,70 +12,32 @@
     <!-- Inputs -->
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <FormField
+        v-model="form.currentAssets"
+        type="number"
+        label="Total Current Assets"
+        placeholder="Masalan: 120000000"
+        suffix="USD"
+        hint="Tez pulga aylantiriladigan aktivlar summasi."
+      />
 
-      <div>
+      <FormField
+        v-model="form.totalLiabilities"
+        type="number"
+        label="Total Liabilities"
+        placeholder="Masalan: 85000000"
+        suffix="USD"
+        hint="Barcha majburiyatlar (qisqa + uzoq muddatli)."
+      />
 
-        <label class="font-medium block mb-2">
-
-          Total Current Assets (USD)
-
-        </label>
-
-        <input
-          v-model="form.currentAssets"
-          type="number"
-          placeholder="Masalan: 120000000"
-          class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-        >
-
-        <p class="text-sm text-gray-500 mt-2">
-          Tez pulga aylantiriladigan aktivlar summasi.
-        </p>
-
-      </div>
-
-      <div>
-
-        <label class="font-medium block mb-2">
-
-          Total Liabilities (USD)
-
-        </label>
-
-        <input
-          v-model="form.totalLiabilities"
-          type="number"
-          placeholder="Masalan: 85000000"
-          class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-        >
-
-        <p class="text-sm text-gray-500 mt-2">
-          Barcha majburiyatlar (qisqa + uzoq muddatli).
-        </p>
-
-      </div>
-
-      <div>
-
-        <label class="font-medium block mb-2">
-
-          Total Current Liabilities (USD)
-
-        </label>
-
-        <input
-          v-model="form.currentLiabilities"
-          type="number"
-          placeholder="Masalan: 40000000"
-          class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-        >
-
-        <p class="text-sm text-gray-500 mt-2">
-          Qisqa muddatli qarzlar yig'indisi.
-        </p>
-
-      </div>
-
+      <FormField
+        v-model="form.currentLiabilities"
+        type="number"
+        label="Total Current Liabilities"
+        placeholder="Masalan: 40000000"
+        suffix="USD"
+        hint="Qisqa muddatli qarzlar yig'indisi."
+      />
     </div>
 
     <!-- Rules -->
@@ -220,7 +182,10 @@
 </template>
 
 <script>
+import FormField from '../common/FormField.vue'
+
 export default {
+  components: { FormField },
 
   data() {
 

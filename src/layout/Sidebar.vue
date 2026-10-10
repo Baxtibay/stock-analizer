@@ -13,8 +13,8 @@
         : 'fixed top-0 left-0 h-full w-[80%] -translate-x-full z-50'
     ]"
   >
-    <div class="h-12 flex items-center justify-between px-4 border-b">
-      <span v-if="!collapsed || mobileOpen" class="font-semibold">
+    <div class="h-16 flex items-center justify-between px-4 border-b">
+      <span v-if="!collapsed || mobileOpen" class="font-semibold text-[18px]">
         My Investing
       </span>
 
@@ -47,10 +47,12 @@ label="Stock analyzer"
 to="/stock-analyzer"
 />
 
-      <div class="flex items-center gap-3 px-3 py-2 text-gray-400 cursor-not-allowed">
-        <i class="fa-solid fa-briefcase"></i>
-        <span v-if="!collapsed">My portfel</span>
-      </div>
+      <SidebarItem
+        icon="fa-briefcase"
+        label="My portfel"
+        :collapsed="collapsed"
+        to="/portfolio"
+      />
 
     </nav>
   </aside>
