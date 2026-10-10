@@ -17,7 +17,8 @@
     />
 
     <!-- 🔥 3️⃣ Main Content -->
-    <div class="flex-1 flex flex-col">
+    <!-- min-w-0: keng kontent (jadval va h.k.) ustunni ekrandan tashqariga cho'zib yubormasligi uchun -->
+    <div class="flex-1 min-w-0 flex flex-col">
       <header class="h-16 border-b bg-white flex items-center px-4 md:px-6 relative">
         <button
           class="md:hidden mr-3 text-gray-600"

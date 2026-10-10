@@ -14,7 +14,7 @@
       ></div>
     </div>
 
-    <div class="grid gap-x-5 gap-y-2.5 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+    <div class="grid gap-x-5 gap-y-2.5 grid-cols-[repeat(auto-fit,minmax(min(200px,100%),1fr))]">
       <div v-for="sector in sectors" :key="sector.name" class="flex items-center gap-2.5 text-[14px]">
         <span class="w-3 h-3 flex-none rounded-[3px]" :style="{ background: colorOf(sector.name) }"></span>
         <span class="flex-1 text-[#2B323C]">{{ sector.name }}</span>

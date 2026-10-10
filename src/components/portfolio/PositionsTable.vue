@@ -21,8 +21,68 @@
       </div>
     </div>
 
-    <!-- Kichik ekranlarda jadval yon tomonga suriladi -->
-    <div class="overflow-x-auto">
+    <!-- Kichik va o'rta ekranlarda: kartochkalar ro'yxati -->
+    <ul class="xl:hidden m-0 p-0 list-none flex flex-col gap-3">
+      <li
+        v-for="row in sorted"
+        :key="row.ticker"
+        class="border border-[#EEF0F3] rounded-xl p-4 flex flex-col gap-3"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 flex-none rounded-[10px] bg-[#F0F2F5] flex items-center justify-center font-mono font-semibold text-[12px] text-[#2B323C]"
+          >
+            {{ row.ticker.slice(0, 2) }}
+          </div>
+          <div class="flex flex-col min-w-0 flex-1">
+            <span class="font-mono font-semibold text-[15px]">{{ row.ticker }}</span>
+            <span class="text-[13px] text-[#5D6573] truncate">{{ row.name }}</span>
+          </div>
+          <div class="flex flex-col items-end">
+            <span class="font-mono font-semibold text-[15px]">{{ money(row.value) }}</span>
+            <span class="font-mono text-[12px]" :class="row.pl >= 0 ? 'text-[#1F7A4D]' : 'text-[#B42318]'">
+              {{ signedMoney(row.pl) }} ({{ signedPct(row.plPct) }})
+            </span>
+          </div>
+        </div>
+
+        <dl class="m-0 grid grid-cols-3 gap-2 text-[13px]">
+          <div class="flex flex-col gap-0.5">
+            <dt class="text-[#5D6573]">Soni</dt>
+            <dd class="m-0 font-mono">{{ row.shares }}</dd>
+          </div>
+          <div class="flex flex-col gap-0.5">
+            <dt class="text-[#5D6573]">O'rt. narx</dt>
+            <dd class="m-0 font-mono">{{ money(row.avgPrice) }}</dd>
+          </div>
+          <div class="flex flex-col gap-0.5">
+            <dt class="text-[#5D6573]">Joriy narx</dt>
+            <dd class="m-0 font-mono">{{ money(row.price) }}</dd>
+          </div>
+        </dl>
+
+        <div class="flex items-center justify-between gap-2 border-t border-[#EEF0F3] pt-2.5">
+          <div class="flex items-center gap-2 min-w-0">
+            <RouterLink
+              :to="row.score !== null ? `/analysis/${row.ticker}` : '/stock-analyzer'"
+              class="inline-block whitespace-nowrap text-[12px] font-semibold px-2.5 py-1 rounded-full"
+              :class="row.score !== null ? 'bg-[#E3EAFC] text-[#163BA3]' : 'bg-[#FDEBDD] text-[#8A3B0A]'"
+            >
+              {{ analysisText(row) }}
+            </RouterLink>
+            <span class="text-[12px] text-[#5D6573] whitespace-nowrap">Ulush {{ row.weight.toFixed(1) }}%</span>
+          </div>
+          <ActionMenu
+            :items="menu"
+            :label="`${row.ticker} amallari`"
+            @select="onMenu($event, row)"
+          />
+        </div>
+      </li>
+    </ul>
+
+    <!-- Katta ekranlarda: jadval (joy yetmasa yon tomonga suriladi) -->
+    <div class="hidden xl:block overflow-x-auto">
       <div class="min-w-[920px] flex flex-col">
         <div
           class="grid gap-3 px-3 py-2.5 bg-[#F4F5F7] rounded-[10px] text-[12px] font-semibold text-[#4A525E] uppercase tracking-[0.04em]"

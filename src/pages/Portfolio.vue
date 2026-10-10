@@ -31,8 +31,8 @@
       />
 
       <div class="flex flex-wrap gap-3">
-        <SectorAllocation :sectors="sectors" class="flex-[999_1_520px]" />
-        <PerformanceCard :best="ranked[0]" :worst="ranked[ranked.length - 1]" class="flex-[1_1_300px]" />
+        <SectorAllocation :sectors="sectors" class="flex-[999_1_520px] min-w-0" />
+        <PerformanceCard :best="ranked[0]" :worst="ranked[ranked.length - 1]" class="flex-[1_1_300px] min-w-0" />
       </div>
 
       <PositionsTable :positions="rows" @remove="toRemove = $event" />

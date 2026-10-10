@@ -1,5 +1,5 @@
 <template>
-  <section class="grid gap-3 grid-cols-[repeat(auto-fit,minmax(230px,1fr))]">
+  <section class="grid gap-3 grid-cols-[repeat(auto-fit,minmax(min(230px,100%),1fr))]">
     <div class="bg-[#11151B] text-white rounded-[14px] p-5 flex flex-col gap-2">
       <span class="text-[13px] text-[#B9C0CC] font-medium">Joriy qiymat</span>
       <span class="font-mono font-semibold text-[28px]">{{ money(value) }}</span>
