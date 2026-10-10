@@ -83,12 +83,11 @@
 
     <div>
 
-      <input
+      <FormField
         v-model="comment"
-        type="text"
+        label="Izoh"
         placeholder="Izoh yozing..."
-        class="w-full border rounded-lg px-3 py-2"
-      >
+      />
 
     </div>
 
@@ -183,12 +182,13 @@
 
     </div>
 
-    <input
-      v-model="comment"
-      type="text"
-      placeholder="Izoh yozing..."
-      class="w-full border rounded-lg mt-4 px-3 py-2"
-    >
+    <div class="mt-4">
+      <FormField
+        v-model="comment"
+        label="Izoh"
+        placeholder="Izoh yozing..."
+      />
+    </div>
 
   </div>
 
@@ -197,11 +197,13 @@
 <script>
 
 import RatingSelector from "./RatingSelector.vue"
+import FormField from "../../common/FormField.vue"
 
 export default{
 
 components:{
-RatingSelector
+RatingSelector,
+FormField
 },
 
 props:{

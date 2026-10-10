@@ -14,49 +14,23 @@
     <!-- Inputs -->
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <FormField
+        v-model="cashFromOperations"
+        type="number"
+        label="Cash From Operations"
+        placeholder="Masalan: 250000000"
+        suffix="USD"
+        hint="Operatsion faoliyatdan kelgan pul oqimi."
+      />
 
-      <div>
-
-        <label class="font-medium block mb-2">
-
-          Cash From Operations (USD)
-
-        </label>
-
-        <input
-          v-model.number="cashFromOperations"
-          type="number"
-          placeholder="Masalan: 250000000"
-          class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-        >
-
-        <p class="text-sm text-gray-500 mt-2">
-          Operatsion faoliyatdan kelgan pul oqimi.
-        </p>
-
-      </div>
-
-      <div>
-
-        <label class="font-medium block mb-2">
-
-          Capital Expenditure (USD)
-
-        </label>
-
-        <input
-          v-model.number="capitalExpenditure"
-          type="number"
-          placeholder="Masalan: 75000000"
-          class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-        >
-
-        <p class="text-sm text-gray-500 mt-2">
-          Asosiy vositalarga qilingan investitsiyalar.
-        </p>
-
-      </div>
-
+      <FormField
+        v-model="capitalExpenditure"
+        type="number"
+        label="Capital Expenditure"
+        placeholder="Masalan: 75000000"
+        suffix="USD"
+        hint="Asosiy vositalarga qilingan investitsiyalar."
+      />
     </div>
 
     <!-- Qoida -->
@@ -184,7 +158,10 @@
 </template>
 
 <script>
+import FormField from '../common/FormField.vue'
+
 export default {
+  components: { FormField },
 
   props: {
     currentStep: {
