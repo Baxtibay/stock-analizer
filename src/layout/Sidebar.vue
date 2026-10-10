@@ -40,10 +40,12 @@
 
     <nav class="p-2 space-y-1">
       <SidebarItem icon="fa-house" label="Home" :collapsed="collapsed" to="/" />
-      <div class="flex items-center gap-3 px-3 py-2 text-gray-400 cursor-not-allowed">
-        <i class="fa-solid fa-chart-pie"></i>
-        <span v-if="!collapsed">Stock analizer</span>
-      </div>
+      <SidebarItem
+icon="fa-chart-pie"
+label="Stock analyzer"
+:collapsed="collapsed"
+to="/stock-analyzer"
+/>
 
       <div class="flex items-center gap-3 px-3 py-2 text-gray-400 cursor-not-allowed">
         <i class="fa-solid fa-briefcase"></i>
