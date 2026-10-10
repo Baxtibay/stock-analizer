@@ -1,12 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Dashboard from '../pages/Dashboard.vue'
+import StockAnalyzer from '../pages/StockAnalyzer.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: Dashboard
-  }
+  },
+  {
+    path: "/stock-analyzer",
+    component: StockAnalyzer,
+  },
 ]
 
 const router = createRouter({
