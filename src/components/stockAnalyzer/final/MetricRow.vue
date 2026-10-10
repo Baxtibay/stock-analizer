@@ -3,7 +3,7 @@
   <!-- Desktop -->
 
   <div
-    class="hidden lg:grid grid-cols-5 gap-5 items-center border-b px-4 py-4 hover:bg-gray-50 transition"
+    class="hidden lg:grid grid-cols-4 gap-5 items-center border-b px-4 py-4 hover:bg-gray-50 transition"
   >
 
     <!-- Chap taraf -->
@@ -75,18 +75,6 @@
 
       <RatingSelector
         v-model="localRating"
-      />
-
-    </div>
-
-    <!-- Izoh -->
-
-    <div>
-
-      <FormField
-        v-model="comment"
-        label="Izoh"
-        placeholder="Izoh yozing..."
       />
 
     </div>
@@ -182,14 +170,6 @@
 
     </div>
 
-    <div class="mt-4">
-      <FormField
-        v-model="comment"
-        label="Izoh"
-        placeholder="Izoh yozing..."
-      />
-    </div>
-
   </div>
 
 </template>
@@ -197,13 +177,11 @@
 <script>
 
 import RatingSelector from "./RatingSelector.vue"
-import FormField from "../../common/FormField.vue"
 
 export default{
 
 components:{
-RatingSelector,
-FormField
+RatingSelector
 },
 
 props:{
@@ -230,9 +208,7 @@ data(){
 
 return{
 
-localRating:"",
-
-comment:""
+localRating:""
 
 }
 

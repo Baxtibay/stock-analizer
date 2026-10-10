@@ -35,7 +35,7 @@
     <div class="hidden lg:block mt-8">
 
       <div
-        class="grid grid-cols-5 gap-5 px-5 py-4 bg-gray-50 border rounded-xl font-semibold"
+        class="grid grid-cols-4 gap-5 px-5 py-4 bg-gray-50 border rounded-xl font-semibold"
       >
 
         <div>Ko'rsatkich</div>
@@ -45,8 +45,6 @@
         <div>Baholash</div>
 
         <div>Mening bahom</div>
-
-        <div>Izoh</div>
 
       </div>
 
@@ -123,6 +121,18 @@
 
     </div>
 
+    <!-- Investorlar fikri (FCF dan keyin, barcha ekranlarda ko'rinadi) -->
+
+    <div class="mt-8">
+      <FormField
+        v-model="investorOpinion"
+        as="textarea"
+        label="Investorlar fikri"
+        placeholder="Kompaniya haqida investorlar va tahlilchilar fikrini yozing..."
+        rows="4"
+      />
+    </div>
+
     <!-- Mobile -->
 
     <div class="lg:hidden mt-6">
@@ -190,16 +200,24 @@
 
 <script>
 import MetricRow from "./final/MetricRow.vue";
+import FormField from "../common/FormField.vue";
 
 export default{
 
   components: {
-    MetricRow
+    MetricRow,
+    FormField
   },
 
   props:[
       "currentStep",
       "totalSteps"
-  ]
+  ],
+
+  data() {
+    return {
+      investorOpinion: ""
+    }
+  }
 }
 </script>

@@ -27,10 +27,10 @@
           <i class="fa-solid fa-bars text-2xl"></i>
         </button>
 
-        <!-- Search (header o'rtasida, faqat asosiy sahifada). Enter bosilganda qidiradi -->
+        <!-- Search (faqat asosiy sahifada): telefon/planshetda o'rtada, kompyuter/noutbukda o'ng tomonda. Enter bosilganda qidiradi -->
         <form
           v-if="$route.path === '/'"
-          class="flex-1 max-w-xl mx-auto"
+          class="flex-1 max-w-xl mx-auto lg:mr-0"
           @submit.prevent="onSearch"
         >
           <div class="relative">
